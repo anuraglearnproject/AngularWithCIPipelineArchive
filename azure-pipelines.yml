@@ -18,5 +18,5 @@ steps:
 - script: |
     cd aipngtraining
     npm install
-    npm run build -- --prod
+    npm run build
   displayName: 'npm install and build Angular application'
