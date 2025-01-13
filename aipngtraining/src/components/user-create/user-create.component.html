@@ -1,0 +1,90 @@
+<div class="container">
+    <h2>Create User</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <!-- Email Field -->
+        <div>
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" type="email" />
+          <div *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched">
+            <small class="error">Email is required and must be valid.</small>
+          </div>
+        </div>
+      
+        <!-- Username Field -->
+        <div>
+          <label for="username">Username</label>
+          <input id="username" formControlName="username" />
+        </div>
+      
+        <!-- Password Field -->
+        <div>
+          <label for="password">Password</label>
+          <input id="password" formControlName="password" type="password" />
+          <div *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].touched">
+            <small class="error">Password is required.</small>
+          </div>
+        </div>
+      
+        <!-- First Name Field -->
+        <div>
+          <label for="firstname">First Name</label>
+          <input id="firstname" formControlName="firstname" />
+          <div *ngIf="userForm.get('firstname')?.invalid && userForm.get('firstname')?.touched">
+            <small class="error">First name is required.</small>
+          </div>
+        </div>
+      
+        <!-- Last Name Field -->
+        <div>
+          <label for="lastname">Last Name</label>
+          <input id="lastname" formControlName="lastname" />
+          <div *ngIf="userForm.get('lastname')?.invalid && userForm.get('lastname')?.touched">
+            <small class="error">Last name is required.</small>
+          </div>
+        </div>
+      
+        <!-- Address Section -->
+        <div>
+          <label for="street">Street</label>
+          <input id="street" formControlName="street" />
+        </div>
+        
+        <div>
+          <label for="city">City</label>
+          <input id="city" formControlName="city" />
+        </div>
+        
+        <div>
+          <label for="number">Number</label>
+          <input id="number" formControlName="number" type="number" />
+        </div>
+        
+        <div>
+          <label for="zipcode">Zipcode</label>
+          <input id="zipcode" formControlName="zipcode" />
+        </div>
+      
+        <!-- Geolocation Section -->
+        <div>
+          <label for="latitude">Latitude</label>
+          <input id="latitude" formControlName="latitude" type="text" />
+        </div>
+      
+        <div>
+          <label for="longitude">Longitude</label>
+          <input id="longitude" formControlName="longitude" type="text" />
+        </div>
+      
+        <!-- Phone Field -->
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" formControlName="phone" />
+        </div>
+      
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="userForm.invalid">Submit</button>
+        <p>{{processing}}</p>
+      </form>
+      
+  </div>
+  

@@ -1,0 +1,17 @@
+<h1>Hello everyone!</h1>
+<h2>Welcome to Anurag web application.</h2>
+<input type="checkbox" [(ngModel)]="ShowHome" id="chkHome"/>
+<label for="chkHome">Show Home</label>
+<input type="checkbox" [(ngModel)]="ShowProducts" id="chkProducts"/>
+<label for="chkProducts">Show Products</label>
+<input type="checkbox" [(ngModel)]="ShowUserCreate" id="chkUserCreate"/>
+<label for="chkUserCreate">Show Create</label>
+<div *ngIf="ShowHome">
+  <app-home></app-home>
+</div>
+<div *ngIf="ShowProducts">
+  <app-products></app-products>
+</div>
+<div *ngIf="ShowUserCreate">
+  <app-user-create></app-user-create>
+</div>
