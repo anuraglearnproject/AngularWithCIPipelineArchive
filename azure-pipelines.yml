@@ -19,7 +19,7 @@ steps:
     cd aipngtraining
     npm install -g @angular/cli
     npm install
-    npm build --configuration=production
+    npm run build --configuration=production
   displayName: 'npm install and build Angular application'
   
   #publish artifacts
