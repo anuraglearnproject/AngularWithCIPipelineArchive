@@ -17,6 +17,22 @@ steps:
 
 - script: |
     cd aipngtraining
+    npm install -g @angular/cli
     npm install
-    npm run build
+    npm build --configuration=production
   displayName: 'npm install and build Angular application'
+  
+  #publish artifacts
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'test-api-integration/dist'
+    ArtifactName: 'test-api-integration/dist'
+
+#archive files
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/test-api-integration/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStageingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
