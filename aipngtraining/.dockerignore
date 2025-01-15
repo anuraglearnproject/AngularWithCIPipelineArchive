@@ -1,0 +1,21 @@
+ 
+# Node.js modules
+node_modules
+
+# Dist directory (production build output)
+dist
+
+# Git directories and files
+.git
+.gitignore
+
+# Docker files (you usually don't want these in the image)
+Dockerfile
+.dockerignore
+
+# Environment variables
+.env
+
+# Other files that are unnecessary for the image
+*.md
+*.log
