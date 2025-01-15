@@ -22,17 +22,25 @@ steps:
     npm run build --configuration=production
   displayName: 'npm install and build Angular application'
   
-  #publish artifacts
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'test-api-integration/dist'
-    ArtifactName: 'test-api-integration/dist'
+#   #publish artifacts
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: 'test-api-integration/dist'
+#     ArtifactName: 'test-api-integration/dist'
 
-#archive files
-- task: ArchiveFiles@2
+# #archive files
+# - task: ArchiveFiles@2
+#   inputs:
+#     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/test-api-integration/'
+#     includeRootFolder: false
+#     archiveType: 'zip'
+#     archiveFile: '$(Build.ArtifactStageingDirectory)/$(Build.BuildId).zip'
+#     replaceExistingArchive: true
+
+
+- task: DockerCompose@1
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/test-api-integration/'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStageingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+    containerregistrytype: 'Azure Container Registry'
+    azureContainerRegistry: '{"loginServer":"nganurag.azurecr.io", "id" : "/subscriptions/2a3c6418-97b9-4d96-a24b-2c2d7633d375/resourceGroups/rg-azuser2561_mml.local-c4Xy9/providers/Microsoft.ContainerRegistry/registries/nganurag"}'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Run a Docker Compose command'
