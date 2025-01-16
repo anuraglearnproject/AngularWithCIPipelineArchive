@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aipngtraining
+  labels:
+    app: aipngtraining
+spec:
+  replicas: 6
+  template:
+    metadata:
+      name: aipngtraining
+      labels:
+        app: aipngtraining
+    spec:
+      containers:
+      - name: letskube
+        image: anuragreview/aipngtraining:latest
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: aipngtraining
+
+
+---
+  
+  
+apiVersion: v1
+kind: Service
+metadata:
+  name: aipngtraining
+spec:
+  selector:
+    app: aipngtraining
+  ports:
+    - port: 80
+  type: LoadBalancer  
