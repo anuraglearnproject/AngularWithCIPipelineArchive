@@ -48,18 +48,35 @@ steps:
 #     dockerComposeFile: '**/docker-compose.yml'
 #     action: 'Run a Docker Compose command'
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'dockerregistry_anuragreview_aipngtraining'  # The Docker registry service connection
-    repository: $(imageName)
-    command: 'buildAndPush'
-    dockerfile: '**/aipngtraining/Dockerfile'
-    tags: $(imageTag)
+# - task: Docker@2
+#   inputs:
+#     containerRegistry: 'dockerregistry_anuragreview_aipngtraining'  # The Docker registry service connection
+#     repository: $(imageName)
+#     command: 'buildAndPush'
+#     dockerfile: '**/aipngtraining/Dockerfile'
+#     tags: $(imageTag)
 
-# Step 2: Push the Docker image to Docker Hub
-- task: Docker@2
+# # Step 2: Push the Docker image to Docker Hub
+# - task: Docker@2
+#   inputs:
+#     containerRegistry: 'dockerregistry_anuragreview_aipngtraining'
+#     repository: $(imageName)
+#     command: 'push'
+#     tags: $(imageTag)
+
+
+- task: ArchiveFiles@2
   inputs:
-    containerRegistry: 'dockerregistry_anuragreview_aipngtraining'
-    repository: $(imageName)
-    command: 'push'
-    tags: $(imageTag)
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'angularwebappnganurag'
+    appType: 'webApp'
+    WebAppName: 'nganurag'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
