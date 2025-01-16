@@ -46,15 +46,15 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerregistry_anuragreview_aipngtraining'  # The Docker registry service connection
-    repository: $(imageName)
+    repository: 'aipngtraining'
     command: 'buildAndPush'
     dockerfile: '**/Dockerfile'
-    tags: $(imageTag)
+    tags: 'latest'
 
 # Step 2: Push the Docker image to Docker Hub
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerregistry_anuragreview_aipngtraining'
-    repository: $(imageName)
+    repository: 'aipngtraining'
     command: 'push'
-    tags: $(imageTag)
+    tags: 'latest'
