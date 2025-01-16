@@ -37,10 +37,24 @@ steps:
 #     archiveFile: '$(Build.ArtifactStageingDirectory)/$(Build.BuildId).zip'
 #     replaceExistingArchive: true
 
-
-- task: DockerCompose@1
+# - task: DockerCompose@1
+#   inputs:
+#     containerregistrytype: 'Azure Container Registry'
+#     azureContainerRegistry: '{"loginServer":"nganurag.azurecr.io", "id" : "/subscriptions/2a3c6418-97b9-4d96-a24b-2c2d7633d375/resourceGroups/rg-azuser2561_mml.local-c4Xy9/providers/Microsoft.ContainerRegistry/registries/nganurag"}'
+#     dockerComposeFile: '**/docker-compose.yml'
+#     action: 'Run a Docker Compose command'
+- task: Docker@2
   inputs:
-    containerregistrytype: 'Azure Container Registry'
-    azureContainerRegistry: '{"loginServer":"nganurag.azurecr.io", "id" : "/subscriptions/2a3c6418-97b9-4d96-a24b-2c2d7633d375/resourceGroups/rg-azuser2561_mml.local-c4Xy9/providers/Microsoft.ContainerRegistry/registries/nganurag"}'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Run a Docker Compose command'
+    containerRegistry: 'dockerregistry_anuragreview_aipngtraining'  # The Docker registry service connection
+    repository: $(imageName)
+    command: 'buildAndPush'
+    dockerfile: '**/Dockerfile'
+    tags: $(imageTag)
+
+# Step 2: Push the Docker image to Docker Hub
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerregistry_anuragreview_aipngtraining'
+    repository: $(imageName)
+    command: 'push'
+    tags: $(imageTag)
