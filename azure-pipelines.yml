@@ -63,11 +63,3 @@ steps:
     repository: $(imageName)
     command: 'push'
     tags: $(imageTag)
-
-- task: KubernetesManifest@1
-  inputs:
-    action: 'deploy'
-    connectionType: 'azureResourceManager'
-    azureSubscriptionConnection: 'aip-az-sc-ng-training'
-    azureResourceGroup: 'rg-azuser2561_mml.local-c4Xy9'
-    kubernetesCluster: 'kubernetClusteraipNgApp'
