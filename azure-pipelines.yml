@@ -25,21 +25,21 @@ steps:
     npm install
     npm run build --configuration=production
   displayName: 'npm install and build Angular application'
-  
-#   #publish artifacts
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: 'test-api-integration/dist'
-#     ArtifactName: 'test-api-integration/dist'
 
-# #archive files
-# - task: ArchiveFiles@2
-#   inputs:
-#     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/test-api-integration/'
-#     includeRootFolder: false
-#     archiveType: 'zip'
-#     archiveFile: '$(Build.ArtifactStageingDirectory)/$(Build.BuildId).zip'
-#     replaceExistingArchive: true
+  #publish artifacts
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'aipngtraining/dist'
+    ArtifactName: 'aipngtraining/dist'
+
+#archive files
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/aipngtraining/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStageingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 
 # - task: DockerCompose@1
 #   inputs:
@@ -64,14 +64,7 @@ steps:
 #     command: 'push'
 #     tags: $(imageTag)
 
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+#publish artifacts
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -80,3 +73,11 @@ steps:
     appType: 'webApp'
     WebAppName: 'nganurag'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'aip ng training'
+    appType: 'webApp'
+    appName: 'nganurag'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
