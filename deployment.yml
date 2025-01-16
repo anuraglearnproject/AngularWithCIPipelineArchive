@@ -13,25 +13,24 @@ spec:
         app: aipngtraining
     spec:
       containers:
-      - name: letskube
-        image: anuragreview/aipngtraining:latest
+      - name: aipngtraining
+        image: anuragreview/aipngtraining:v1.0
         imagePullPolicy: IfNotPresent
       restartPolicy: Always
   selector:
     matchLabels:
       app: aipngtraining
-
-
+ 
+ 
 ---
-  
-  
+ 
 apiVersion: v1
 kind: Service
 metadata:
-  name: aipngtraining
+  name: kubernetclusteraipngapp
 spec:
   selector:
     app: aipngtraining
   ports:
     - port: 80
-  type: LoadBalancer  
+  type: LoadBalancer
