@@ -71,13 +71,13 @@ steps:
     ConnectionType: 'AzureRM'
     azureSubscription: 'angularwebappnganurag'
     appType: 'webApp'
-    WebAppName: 'nganurag'
+    WebAppName: 'aipngapp'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'aip ng training'
-    appType: 'webApp'
-    appName: 'aipngapp'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'auto'
+# - task: AzureWebApp@1
+#   inputs:
+#     azureSubscription: 'aip ng training'
+#     appType: 'webApp'
+#     appName: 'aipngapp'
+#     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+#     deploymentMethod: 'auto'
