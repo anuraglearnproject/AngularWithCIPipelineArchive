@@ -72,7 +72,7 @@ steps:
     azureSubscription: 'angularwebappnganurag'
     appType: 'webApp'
     WebAppName: 'aipngapp'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/aipngtraining/'
 
 # - task: AzureWebApp@1
 #   inputs:
