@@ -1,4 +1,14 @@
 form{
     border: 1px solid black;
     padding: 20px;
+    width: 50%;
+    text-align: center;
+}
+input,button{
+    padding: 8px;
+    margin-bottom: 7px;
+    width: 90%;
+}
+button{
+    padding: 8px 15px;
 }
