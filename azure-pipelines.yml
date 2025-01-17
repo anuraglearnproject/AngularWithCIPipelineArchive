@@ -66,13 +66,13 @@ steps:
 
 #publish artifacts
 
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'angularwebappnganurag'
-    appType: 'webApp'
-    WebAppName: 'aipngapp'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/aipngtraining/'
+# - task: AzureRmWebAppDeployment@4
+#   inputs:
+#     ConnectionType: 'AzureRM'
+#     azureSubscription: 'angularwebappnganurag'
+#     appType: 'webApp'
+#     WebAppName: 'aipngapp'
+#     packageForLinux: '$(System.DefaultWorkingDirectory)/aipngtraining/'
 
 # - task: AzureWebApp@1
 #   inputs:
