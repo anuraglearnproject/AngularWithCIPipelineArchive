@@ -78,6 +78,6 @@ steps:
   inputs:
     azureSubscription: 'aip ng training'
     appType: 'webApp'
-    appName: 'nganurag'
+    appName: 'aipngapp'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     deploymentMethod: 'auto'
